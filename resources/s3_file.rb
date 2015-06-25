@@ -1,4 +1,5 @@
 actions :create, :create_if_missing, :touch, :delete
+default_action :create
 
 state_attrs :backup,
             :bucket,
