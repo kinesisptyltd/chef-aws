@@ -17,6 +17,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe "ohai"
+
 directory "/etc/chef/ohai/hints" do
   recursive true
   action :create
@@ -37,5 +39,3 @@ end
 ohai "reload" do
   action :reload
 end.run_action(:reload)
-
-include_recipe "ohai"
