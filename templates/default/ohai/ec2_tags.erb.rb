@@ -22,11 +22,35 @@ Ohai.plugin(:EC2Tags) do
   depends "ec2"
 
   collect_data do
-    require "aws-sdk"
+    begin
+      require "aws-sdk"
+    rescue LoadError
+      Ohai::Log.error("EC2Tags: Failed to load aws-sdk.")
+      raise
+    end
 
-    client = Aws::EC2::Resource.new(region: ec2["placement_availability_zone"].chop)
+    ec2["region"] = ec2["placement_availability_zone"].chop
+
+    client = Aws::EC2::Resource.new(region: ec2["region"])
     instance = client.instance(ec2["instance_id"])
 
-    ec2[:tags] = instance.tags.each_with_object({}) { |t, h| h[t.key] = t.value }
+    # Store all tags, snake casing attribute keys
+    ec2[:tags] = instance.tags.each_with_object({}) do |t, h|
+      key = t.key.include?(":") ? t.key.split(":").last : t.key
+      key = key.gsub(/::/, "/")
+         .gsub(/([A-Z]+)([A-Z][a-z])/,"\1_\2")
+         .gsub(/([a-z\d])([A-Z])/,"\1_\2")
+         .tr("-", "_")
+         .downcase
+
+      h[key] = t.value
+    end
+
+    ec2[:vpc_id] = instance.vpc_id
+    ec2[:subnet_id] = instance.subnet_id
+    ec2[:stack_id] = ec2[:tags][:stack_id]
+    ec2[:stack_name] = ec2[:tags][:stack_name]
+    ec2[:logical_id] = ec2[:tags][:logical_id]
+    ec2[:autoscaling_group_name] = ec2[:tags][:group_name]
   end
 end
