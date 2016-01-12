@@ -17,7 +17,6 @@ before_script:
 script:
   # Docker build environment doesn't have permission to destroy containers
   - chef exec bundle exec kitchen verify
-  - chef exec bundle exec rspec spec
 
 after_script:
   # - chef exec bundle exec kitchen destroy
