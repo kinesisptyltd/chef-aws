@@ -1,19 +1,27 @@
 language: ruby
+
 sudo: required
 services:
-- docker
+  - docker
+
 branches:
   only:
-  - master
+    - master
+
 install:
-- curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
-- chef exec bundle install
+  - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
+  - chef exec bundle install
+
 before_script:
+
 script:
-- chef exec bundle exec kitchen verify
+  - chef exec bundle exec kitchen verify
+
 after_script:
+
 env:
   global:
+
 notifications:
   slack:
     secure: lSc4wTmIZG6xRMUzPCuU6bSbURfteRS7e4s1sj5DFYBPH/hoPdciA5deBQTddtpmO2qK3lVzQRDbUjYNj5WYFyHCn0NXrG7fJmZx4id/PyWalBdly80EJOWkC5PyizLSIl5PU4vKgIV3Q3T41k1j4ZfVOGN/6u/UNfNZCTD3mu7/ARFU0Km5pl28mb8yrc2BzxNdRbeQyhGDJQqVkqkmnnKtmCjTIfvS5XInFVTtRxix7BTuKzI8vEJMl/ADkpOZp+Nc/kneZxAwys8j1gOIeQfnTAPczpG11LNXoMD5iUS05exc6SKCmN6mLTmxE4S44XEagIUxOTfEscQWTohVjAY3Q2EpZUQ8reE/de0tmrcZtMikbnI0Ma+3+kTE1JHC6zXwXDga7SmxEzI4F1S2a+pDCq9Hd4a9Nh4JGc5L9nbMg+HFOpKs33mod1vI6cQwUdIWV4oxfbMS7QsPfIRyL8XXiknCdXyPQCL1+rEcBtZGTCuhRduwkGpUY0/1kKO+Mqy88WdMbIm+Q2r/LfitduBSYt9pja9JBZgP3MWXKjh/SGuJ/IciAuoLbcUZOJlaXh4ug69ePDViE/vdf9Sz8rIuPR7c3kmeEoxXc8cmJ3HyRddPY+zwJ1dfWdkcSF1rs3PgJzvEW9YSNpGp/JhrFxgFTFzAWbm7m8lWnWyhtYk=
