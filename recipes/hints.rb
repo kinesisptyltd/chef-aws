@@ -34,7 +34,7 @@ template "#{node["ohai"]["plugin_path"]}/ec2_tags.rb" do
   owner "root"
   group "root"
   mode 00755
-end
+end.run_action(:create)
 
 ohai "reload" do
   action :reload

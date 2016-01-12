@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kinesisptyltd/cookbook-aws.svg)](https://travis-ci.org/kinesisptyltd/cookbook-aws)
+
 # cookbook-aws
 
 Cookbook to install the Ruby AWS SDK and setup Ohai hints. Also provides library
