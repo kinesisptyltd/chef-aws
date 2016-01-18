@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/kinesisptyltd/cookbook-aws.svg)](https://travis-ci.org/kinesisptyltd/cookbook-aws)
+[![Circle CI](https://circleci.com/gh/kinesisptyltd/chef-aws.svg?style=svg)](https://circleci.com/gh/kinesisptyltd/chef-aws)
 
-# cookbook-aws
+# chef-aws
 
 Cookbook to install the Ruby AWS SDK and setup Ohai hints. Also provides library
 access to the Ruby AWS SDK for use in recipes.
