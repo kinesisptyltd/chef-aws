@@ -17,25 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "ohai"
+ohai_hint "ec2"
 
-directory "/etc/chef/ohai/hints" do
-  recursive true
-  action :create
-end.run_action(:create)
-
-file "/etc/chef/ohai/hints/ec2.json" do
-  content {}
-  action :create
-end.run_action(:create)
-
-template "#{node["ohai"]["plugin_path"]}/ec2_tags.rb" do
-  source "ohai/ec2_tags.erb.rb"
-  owner "root"
-  group "root"
-  mode 00755
-end.run_action(:create)
-
-ohai "reload" do
-  action :reload
-end.run_action(:reload)
+ohai_plugin "EC2 Tags" do
+  name "ec2_tags"
+  source_file "ohai/ec2_tags.erb.rb"
+  resource :template
+end

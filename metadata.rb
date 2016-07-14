@@ -4,6 +4,6 @@ maintainer_email "devs@kinesis.org"
 license          "Apache 2.0"
 description      "Provides LWRPs for EC2 instances"
 long_description IO.read(File.join(File.dirname(__FILE__), "README.md"))
-version          "1.0.0"
+version          "2.0.0"
 
 depends "ohai"

@@ -3,7 +3,7 @@ require "serverspec"
 set :backend, :exec
 
 describe "aws::default" do
-  describe file("/etc/chef/ohai_plugins/ec2_tags.rb") do
+  describe file("/tmp/kitchen/ohai/plugins/ec2_tags.rb") do
     it { is_expected.to exist }
   end
 
