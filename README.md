@@ -1,5 +1,3 @@
-[![Circle CI](https://circleci.com/gh/kinesisptyltd/chef-aws.svg?style=svg)](https://circleci.com/gh/kinesisptyltd/chef-aws)
-
 # chef-aws
 
 Cookbook to install the Ruby AWS SDK and setup Ohai hints. Also provides library
