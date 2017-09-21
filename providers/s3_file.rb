@@ -23,6 +23,7 @@ action :touch do
 end
 
 def do_s3_file(resource_action)
+  require 'aws-sdk'
   client = aws_client("S3", new_resource.region)
 
   remote_path = new_resource.remote_path
